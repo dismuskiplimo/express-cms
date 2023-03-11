@@ -1,7 +1,7 @@
 const {Sequelize, DataTypes} = require('sequelize');
-const sequelizeInstance = require('../config/sequelize');
+const sequelize = require('../config/sequelize');
 
-const Post = sequelizeInstance.define("posts",{
+const Post = sequelize.define("posts",{
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,

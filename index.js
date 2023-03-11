@@ -12,7 +12,7 @@ require('dotenv').config();
 const {PostController} = require('./controllers');
 
 // sequalize connection
-const sequelizeInstance = require('./config/sequelize');
+const sequelize = require('./config/sequelize');
 
 // router
 const routes = require('./routes');
@@ -22,7 +22,7 @@ const app = express();
 
 // instantiate the session store
 const sessionStore = new SequelizeStore({
-    db: sequelizeInstance,
+    db: sequelize,
 });
 
 // set up express session
@@ -41,7 +41,7 @@ app.use(function (req, res, next) {
 });
 
 // sync the db
-sequelizeInstance.sync();
+sequelize.sync();
 sessionStore.sync({force: true});
 
 // set the templating engine to express handlebars
