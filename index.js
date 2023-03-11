@@ -9,7 +9,7 @@ const SequelizeStore = require("connect-session-sequelize")(session.Store);
 require('dotenv').config();
 
 // controllers
-const {UserController, PostController, CommentController} = require('./controllers');
+const {PostController} = require('./controllers');
 
 // sequalize connection
 const sequelizeInstance = require('./config/sequelize');
@@ -55,28 +55,13 @@ app.use(express.static('public'));
 // to allow for POST data
 app.use(express.urlencoded({ extended: true }));
 
-/**
- * USER ROUTES
- */
+// set up routes
 app.use(routes);
-
-/**
- * BLOG POST ROUTES
- */
-
-
-/**
- * COMMENTS ROUTES
- */
-
-// post a single comment
-app.post('/posts/:id/comment', (req, res) => { CommentController.post_new_comment(req, res);});
 
 // homepage route
 app.get('/', (req, res) => {
     PostController.all_posts(req, res);
 });
-
 
 // start the server
 app.listen(process.env.APP_PORT, () => {
