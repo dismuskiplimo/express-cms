@@ -64,23 +64,6 @@ app.use(routes);
  * BLOG POST ROUTES
  */
 
-// display add post page
-app.get('/posts/new', (req, res) => { PostController.new_post(req, res);});
-
-// process the new blog post
-app.post('/posts/new', (req, res) => { PostController.post_new_post(req, res);});
-
-// display a single post
-app.get('/posts/:id/view', (req, res) => { PostController.view_post(req, res);});
-
-// display a single post
-app.get('/posts/:id/edit', (req, res) => { PostController.edit_post(req, res);});
-
-// update a single post
-app.post('/posts/:id/edit', (req, res) => { PostController.post_edit_post(req, res);});
-
-// delete a single post
-app.get('/posts/:id/delete', (req, res) => { PostController.delete_post(req, res);});
 
 /**
  * COMMENTS ROUTES
