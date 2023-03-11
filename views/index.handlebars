@@ -1,0 +1,8 @@
+<h2>Blog Posts ({{posts.length}})</h2>
+
+{{#each posts}}
+    <div class = "post">
+        <h4><a href="/posts/{{this.id}}/view">{{this.title}}</a></h4>
+        <p>{{this.createdAt}}</p>
+    </div>
+{{/each}}

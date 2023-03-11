@@ -1,0 +1,11 @@
+<h2>Welcome {{ session.username }},</h2>
+<p class="text-right"><a href="/posts/new" class = "button">Add Post</a></p>
+
+<h3>My Blog Posts ({{posts.length}})</h3>
+
+{{#each posts}}
+    <div class = "post">
+        <h4><a href="/posts/{{this.id}}/view">{{this.title}}</a></h4>
+        <p>{{this.createdAt}}</p>
+    </div>
+{{/each}}

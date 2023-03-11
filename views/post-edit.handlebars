@@ -1,0 +1,15 @@
+<h2>Edit Post</h2>
+
+<form action="" method="POST">
+    <div class="form-control">
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title" value = "{{post.title}}" placeholder="enter title" required>
+    </div>
+
+    <div class="form-control">
+        <label for="content">Content</label>
+        <textarea name="content" id="content" placeholder="enter content" required>{{post.content}}</textarea>
+    </div>
+
+    <button type="submit" class="button">Update Post</button>
+</form>

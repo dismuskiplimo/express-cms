@@ -1,0 +1,40 @@
+<div class="post" style = "margin-top: 20px">
+    <h2>{{post.title}}</h2>
+    <h5>By: {{post.username}}</h5>
+    <h5>Published: {{post.createdAt}}</h5>
+    <p>{{post.content}}</p>
+
+    {{#if isAuthor }}
+        <div>
+            <a href="/posts/{{post.id}}/edit">Edit</a>
+            <a href="/posts/{{post.id}}/delete">Delete</a>
+        </div>
+    {{/if}}
+</div>
+
+<div class="post">
+    <h4>Comments ({{ comments.length }})</h4>
+
+    {{#if isLoggedIn}}
+        <form action="../../posts/{{post.id}}/comment" method = "POST">
+            <div class="form-control">
+                <textarea name="content" required placeholder="enter comment"></textarea>
+            </div>
+            
+            <button class = "button" type="submit">Comment</button>
+        </form>
+    {{else}}
+        <p>Please <a href="./../../signin">Sign In</a> to comment.</p>
+    {{/if}}
+
+    <hr>
+
+    {{#each comments}}
+        <p>
+            <small><strong>By: {{this.username}}, {{this.createdAt}}</strong></small>
+            
+        </p>
+        <p>{{this.content}}</p>
+        <hr>
+    {{/each}}
+</div>
