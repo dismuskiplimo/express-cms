@@ -15,7 +15,7 @@ const {UserController, PostController, CommentController} = require('./controlle
 const sequelizeInstance = require('./config/sequelize');
 
 // router
-const { userRouter } = require('./routes');
+const routes = require('./routes');
 
 // instantiate express
 const app = express();
@@ -58,7 +58,7 @@ app.use(express.urlencoded({ extended: true }));
 /**
  * USER ROUTES
  */
-app.use(userRouter);
+app.use(routes);
 
 /**
  * BLOG POST ROUTES
