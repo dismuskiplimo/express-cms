@@ -2,14 +2,15 @@ const Post = require('../models/post');
 const Comment = require('../models/comment');
 const User = require('../models/user');
 
+const PostController = {};
 
 // display the form to add post
-exports.new_post = (req, res) => {
+PostController.new_post = (req, res) => {
     res.render('post-new');
 }
 
 // add the post to database
-exports.post_new_post = (req, res) => {
+PostController.post_new_post = (req, res) => {
     
     Post.create({
         title: req.body.title,
@@ -26,7 +27,7 @@ exports.post_new_post = (req, res) => {
 }
 
 // display a post
-exports.view_post = (req, res) => {
+PostController.view_post = (req, res) => {
     Post.findOne({
         where:{
             id: req.params.id,
@@ -88,7 +89,7 @@ exports.view_post = (req, res) => {
 }
 
 // display the form to edit post
-exports.edit_post = (req, res) => {
+PostController.edit_post = (req, res) => {
     Post.findOne({
         where:{
             id: req.params.id,
@@ -105,7 +106,7 @@ exports.edit_post = (req, res) => {
 }
 
 // process  a post update
-exports.post_edit_post = (req, res) => {
+PostController.post_edit_post = (req, res) => {
     Post.update({
         title: req.body.title,
         content: req.body.content,
@@ -125,7 +126,7 @@ exports.post_edit_post = (req, res) => {
 }
 
 //delete a post
-exports.delete_post = (req, res) => {
+PostController.delete_post = (req, res) => {
     Post.findOne({
         where:{
             id: req.params.id,
@@ -144,7 +145,7 @@ exports.delete_post = (req, res) => {
 }
 
 // display all the blog posts
-exports.all_posts = (req, res) => {
+PostController.all_posts = (req, res) => {
     
     // find the posts
     Post.findAll({raw: true})
@@ -155,3 +156,5 @@ exports.all_posts = (req, res) => {
         console.log(err);
     });
 }
+
+module.exports = PostController;

@@ -4,8 +4,10 @@ const Post = require('../models/post');
 // database models
 const User = require('../models/user');
 
+const UserController = {};
+
 // displays the sign in page
-exports.signin = (req, res) => {
+UserController.signin = (req, res) => {
     // redirect if user is already logged in
     if(req.session.user){
         res.redirect("/dashboard");
@@ -16,7 +18,7 @@ exports.signin = (req, res) => {
 }
 
 // process the sign in
-exports.post_signin = (req, res) => {
+UserController.post_signin = (req, res) => {
     // redirect if user is already logged in
     if(req.session.user){
         res.redirect("/dashboard");
@@ -54,7 +56,7 @@ exports.post_signin = (req, res) => {
 }
 
 // display the signup page
-exports.signup = (req, res) => {
+UserController.signup = (req, res) => {
     // redirect if user is already logged in
     if(req.session.user){
         res.redirect("/dashboard");
@@ -65,7 +67,7 @@ exports.signup = (req, res) => {
 }
 
 // process the signup page
-exports.post_signup = (req, res) => {
+UserController.post_signup = (req, res) => {
     // redirect if user is already logged in
     if(req.session.user){
         res.redirect("/dashboard");
@@ -91,7 +93,7 @@ exports.post_signup = (req, res) => {
 }
 
 // log out the user
-exports.logout = (req, res) => {
+UserController.logout = (req, res) => {
     req.session.user = null;
     req.session.username = null;
 
@@ -99,7 +101,7 @@ exports.logout = (req, res) => {
 }
 
 // display blog posts belonging to the user
-exports.blog_posts = (req, res) => {
+UserController.blog_posts = (req, res) => {
     // redirect to sign in page if user is not logged in
     if(!req.session.user){
         res.redirect("/signin");
@@ -119,3 +121,5 @@ exports.blog_posts = (req, res) => {
         console.log(err);
     });
 }
+
+module.exports = UserController;
