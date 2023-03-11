@@ -1,8 +1,8 @@
 const bcrypt = require('bcrypt');
-const Post = require('../models/post');
 
 // database models
 const User = require('../models/user');
+const Post = require('../models/post');
 
 const UserController = {};
 
@@ -12,9 +12,11 @@ UserController.signin = (req, res) => {
     if(req.session.user){
         res.redirect("/dashboard");
     }
-    
-    res.locals.msg = req.query.msg;
-    res.render('signin');
+
+    else{
+        res.locals.msg = req.query.msg;
+        res.render('signin');
+    }
 }
 
 // process the sign in
@@ -64,8 +66,10 @@ UserController.signup = (req, res) => {
         res.redirect("/dashboard");
     }
 
-    res.locals.msg = req.query.msg;
-    res.render('signup');
+    else{
+        res.locals.msg = req.query.msg;
+        res.render('signup');
+    }
 }
 
 // process the signup page
