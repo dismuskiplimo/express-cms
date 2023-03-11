@@ -9,9 +9,7 @@ const SequelizeStore = require("connect-session-sequelize")(session.Store);
 require('dotenv').config();
 
 // controllers
-const UserController = require('./controllers/UserConroller');
-const PostController = require('./controllers/PostController');
-const CommentController = require('./controllers/CommentController');
+const {UserController, PostController, CommentController} = require('./controllers');
 
 // sequalize connection
 const sequelizeInstance = require('./config/sequelize');
@@ -41,7 +39,7 @@ app.use(function (req, res, next) {
 
 // sync the db
 sequelizeInstance.sync();
-sessionStore.sync();
+sessionStore.sync({force: true});
 
 // set the templating engine to express handlebars
 app.engine('handlebars', engine());
