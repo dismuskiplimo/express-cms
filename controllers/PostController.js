@@ -19,7 +19,6 @@ PostController.post_new_post = (req, res) => {
     })
     .then(post => {
         res.redirect("/dashboard");
-        res.stop();
     })
     .catch(err => {
         console.log(err);

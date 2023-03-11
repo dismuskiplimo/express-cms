@@ -23,36 +23,38 @@ UserController.post_signin = (req, res) => {
     if(req.session.user){
         res.redirect("/dashboard");
     }
-    
-    // query the user
-    User.findOne({
-        where: { username: req.body.username },
-    })
-    .then(user => {
-        //user was found
-        if(user){
-            user = user.get();
 
-            // verify the password
-            bcrypt.compare(req.body.password, user.password).then(function(result) {
-                // username and password was valid
-                if(result){
-                    req.session.user = user.id;
-                    req.session.username = user.username;
+    else{
+        // query the user
+        User.findOne({
+            where: { username: req.body.username },
+        })
+        .then(user => {
+            //user was found
+            if(user){
+                user = user.get();
 
-                    // redirect to dashboard
-                    res.redirect('/dashboard');
-                }else{
-                    res.redirect('/signin?msg=' + encodeURI("Invalid Username/Password"));
-                }
-            });
-        }else{
-            res.redirect('/signin?msg=' + encodeURI("Invalid Username/Password"));
-        }
-    })
-    .catch(err => {
-        console.log(err);
-    });
+                // verify the password
+                bcrypt.compare(req.body.password, user.password).then(function(result) {
+                    // username and password was valid
+                    if(result){
+                        req.session.user = user.id;
+                        req.session.username = user.username;
+
+                        // redirect to dashboard
+                        res.redirect('/dashboard');
+                    }else{
+                        res.redirect('/signin?msg=' + encodeURI("Invalid Username/Password"));
+                    }
+                });
+            }else{
+                res.redirect('/signin?msg=' + encodeURI("Invalid Username/Password"));
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    }
 }
 
 // display the signup page
@@ -72,24 +74,26 @@ UserController.post_signup = (req, res) => {
     if(req.session.user){
         res.redirect("/dashboard");
     }
-    
-    // hash the password
-    bcrypt.hash(req.body.password, parseInt(process.env.SALT_ROUNDS)).then((hash) => {
-        // add the user to database
-        User.create({
-            username: req.body.username,
-            password: hash,
-       })
-       .then(user => {
-            user = user.get();
-            req.session.user = user.id;
-            req.session.username = user.username;
 
-            res.redirect("/dashboard");
-            
+    else{
+        // hash the password
+        bcrypt.hash(req.body.password, parseInt(process.env.SALT_ROUNDS)).then((hash) => {
+            // add the user to database
+            User.create({
+                username: req.body.username,
+                password: hash,
         })
-       .catch(err => {});
-    });
+        .then(user => {
+                user = user.get();
+                req.session.user = user.id;
+                req.session.username = user.username;
+
+                res.redirect("/dashboard");
+                
+            })
+        .catch(err => {});
+        });
+    }
 }
 
 // log out the user
@@ -107,19 +111,21 @@ UserController.blog_posts = (req, res) => {
         res.redirect("/signin");
     }
 
-    // find the posts
-    Post.findAll({
-        where: {
-            user_id: req.session.user,
-        },
-        raw: true,
-    })
-    .then(posts => {
-        res.render('dashboard', {posts});
-    })
-    .catch(err => {
-        console.log(err);
-    });
+    else{
+        // find the posts
+        Post.findAll({
+            where: {
+                user_id: req.session.user,
+            },
+            raw: true,
+        })
+        .then(posts => {
+            res.render('dashboard', {posts});
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    }
 }
 
 module.exports = UserController;

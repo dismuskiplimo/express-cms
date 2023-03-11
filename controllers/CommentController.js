@@ -12,7 +12,6 @@ CommentController.post_new_comment = (req, res) => {
     })
     .then(post => {
         res.redirect("/posts/" + req.params.id + "/view");
-        res.stop();
     })
     .catch(err => {
         console.log(err);
