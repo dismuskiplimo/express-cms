@@ -49,9 +49,6 @@ app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', './views');
 
-// set a static folder to be able to load css and js files
-app.use(express.static('public'));
-
 // to allow for POST data
 app.use(express.urlencoded({ extended: true }));
 
