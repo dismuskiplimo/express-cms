@@ -14,6 +14,9 @@ const {UserController, PostController, CommentController} = require('./controlle
 // sequalize connection
 const sequelizeInstance = require('./config/sequelize');
 
+// router
+const { userRouter } = require('./routes');
+
 // instantiate express
 const app = express();
 
@@ -55,26 +58,7 @@ app.use(express.urlencoded({ extended: true }));
 /**
  * USER ROUTES
  */
-
-// signup route
-// GET
-app.get('/signup', (req, res) => { UserController.signup(req, res) });
-
-//POST
-app.post('/signup', (req, res) => { UserController.post_signup(req, res) });
-
-// signin route
-// GET
-app.get('/signin', (req, res) => { UserController.signin(req, res) });
-
-//POST
-app.post('/signin', (req, res) => { UserController.post_signin(req, res) });
-
-// logout route
-app.get('/logout', (req, res) => { UserController.logout(req, res); });
-
-// dashboard route
-app.get('/dashboard', (req, res) => { UserController.blog_posts(req, res); });
+app.use(userRouter);
 
 /**
  * BLOG POST ROUTES
