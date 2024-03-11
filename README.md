@@ -8,7 +8,7 @@ View the live demo at [Express MySQL App](https://express-cms.onrender.com)
 
 ![Screenshot](./screenshot.png)
 
-## H2 How To Run
+## How To Run
 1. install the dependencies using `npm install`
 2. Start your MySQL database and create an empty database with any name, `e.g express_app`
 3. Edit the `.env` file and configure the database credentials to match yours, and use the database you created in the previous step.
