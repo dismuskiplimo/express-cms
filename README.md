@@ -1,10 +1,11 @@
 # Simple Blog CMS using Express.js, Handlebas.js, and MySQL Server
-![Screenshot](./screenshot.png)
 
 This is a Full Stack Express, MySQL, HandleBars, Node app that stores blog posts and comments.
 
 Live Demo
 View the live demo at [Express MySQL App](https://express-cms.onrender.com)
+
+![Screenshot](./screenshot.png)
 
 ## H2 How To Run
 1. install the dependencies using `node i`
