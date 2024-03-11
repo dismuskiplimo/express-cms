@@ -1,4 +1,5 @@
-# express-cms
+# Simple Blog CMS using Express.js, Handlebas.js, and MySQL Server
+![Screenshot](./screenshot.png)
 
 This is a Full Stack Express, MySQL, HandleBars, Node app that stores blog posts and comments.
 
