@@ -2,7 +2,8 @@
 
 This is a Full Stack Express, MySQL, HandleBars, Node app that stores blog posts and comments.
 
-Live Demo
+## Live Demo
+
 View the live demo at [Express MySQL App](https://express-cms.onrender.com)
 
 ![Screenshot](./screenshot.png)
